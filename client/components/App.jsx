@@ -4,7 +4,18 @@ import {HashRouter as Router, Route} from 'react-router-dom'
 const App = () => {
   return (
     <Router>
-    <h1>React development has begun!</h1>
+      <div className='app'>
+        <h1>PLAGUE'S AMAZING MULCH RECIPE GENERATOR!!!!!</h1>
+        <div className='container'>
+          <Route path='/' component={Nav}/>
+          <div className='content'>
+            <Route exact path='/' component={Home}/>
+            <Route path='/login' component={Login}/>
+            <Route path='/ingredients' component={Ingredients}/>
+            <Route path='/recipe' component={Recipe}/>
+          </div>
+        </div>
+      </div>
     </Router>
   )
 }

@@ -1,6 +1,12 @@
 import React from 'react'
 import {HashRouter as Router, Route} from 'react-router-dom'
 
+import Nav from './Nav'
+import Home from './Home'
+import Login from './Login'
+import Ingredients from './Ingredients'
+import Recipe from './Recipe'
+
 const App = () => {
   return (
     <Router>

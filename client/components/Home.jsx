@@ -1,4 +1,6 @@
 import React from 'react'
+import {HashRouter as Router, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -16,9 +18,7 @@ const Home = () => {
           come to the right place!!! Time to make some delicious mulch using PLAGUE'S
           AMAZING MULCH RECIPE GENERATOR!!!!!!!!
       </p>
-      <h2>
-        Let's mulch this shit up!!!!!
-      </h2>
+      <Link to="/login"><button class='coolButton'>Let's mulch this shit up!!!!!</button></Link>
 
     </div>
   )

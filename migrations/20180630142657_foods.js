@@ -6,6 +6,7 @@ exports.up = (knex, Promise) => {
       table.string('measurement_units')
       table.boolean('sweet')
       table.boolean('savoury')
+      table.integer('sloppiness')
     })
   }
   

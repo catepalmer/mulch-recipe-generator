@@ -1,0 +1,54 @@
+Pages I want to have:
+
+- An intro page - maybe not separate from the page where the user puts their name in??
+
+- A page where the user can input their name (stretch goals: save user details and allow a previous user 
+to log in, user some kind of smart shit to save their preferences and generate recipes they might especially like)
+
+- A page where the user can input what's in their fridge/pantry (both individual ingredients and quantity)
+
+- A page where the mulch recipe generator generates their recipe
+
+
+
+
+To-Do List:
+
+- Write text to appear on each page & draw wireframes
+- Get basic components set up
+- Get backend set up - database etc. Decide how recipe generator is going to work.
+- Use Bulma to style pages
+
+
+
+
+
+Things I want to do:
+
+- Use Bulma for styling
+
+- Use React on the frontend and Express on the backend
+
+
+
+First things first: write the text that will appear on each page:
+
+- All pages:
+
+PLAGUE'S AMAZING MULCH RECIPE GENERATOR!!!!!
+
+
+- Home page:
+
+So you've got some random shit in the fridge, and you're too lazy to go 
+out and buy more shit to make something using a real actual legit recipe. 
+But your friend/frenemy/arch-nemesis PLAGUE THE GREAT AND POWERFUL made 
+some very tasty mulch the other day, and you secretly sampled some despite 
+the risk of dying a slow and agonising death due to some poisonous substance 
+or other. You survived the night, and now you're hooked on mulch. Go mulch! 
+Mulch is great. It's also a highly adaptable and nutritious food-like 
+substance, and you'd like to turn the shit you've got in your fridge into 
+a delectable mulch concoction. Well, my friend/frenemy/arch-nemesis, you've 
+come to the right place!!! Time to make some delicious mulch using PLAGUE'S
+AMAZING MULCH RECIPE GENERATOR!!!!!!!!
+

@@ -37,6 +37,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "knex": "^0.14.6",
-    "sqlite3": "^4.0.1"
+    "sqlite3": "^4.0.1",
+    "superagent": "^3.8.3"
   }
 }

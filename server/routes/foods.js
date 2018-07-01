@@ -1,12 +1,11 @@
 const express = require('express')
 const db = require('../db')
-const request = require('superagent')
 const router = express.Router()
 
-router.get('/', (req, res) => {
+router.get('/ingredients', (req, res) => {
   db.getFoods()
     .then(foods => {
-        console.log(foods)
+        console.log('These are the foodses: ' + foods)
       res.json({foods})
     })
 })

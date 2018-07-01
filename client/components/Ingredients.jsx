@@ -1,12 +1,18 @@
 import React from 'react'
+import { getFoods } from '../apiClient'
 
 class Ingredients extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      foods: []
     }
   }
+
+componentDidMount() {
+  getFoods()
+}
+
   render() {
     return (
       <div className='ingredients'>

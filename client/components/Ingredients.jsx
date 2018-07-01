@@ -5,8 +5,10 @@ class Ingredients extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      foods: ''
+      foods: []
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.submitButton = this.submitButton.bind(this)
   }
 
   componentDidMount() {
@@ -18,6 +20,16 @@ class Ingredients extends React.Component {
         })
       })
   }
+
+  handleChange(e) {
+    const state = this.state
+    state[e.target.name] = e.target.value
+}
+
+submitButton(e) {
+  e.preventDefault()
+  this.props.updateState(this.state)
+}
 
   render() {
     return (
@@ -36,11 +48,11 @@ class Ingredients extends React.Component {
                 <label>What's in your fridge?</label>
                 <br />
                 <div className="select">
-                  <select className="select" name="type" onChange={(e) => this.handleChange(e)}>
+                  <select className="select" name="food" onChange={(e) => this.handleChange(e)}>
 
-                    {this.state.foods.map((name, i) => {
+                    {this.state.foods.map((food, i) => {
                       return (
-                        <option key={foods}>{foods}</option>
+                        <option key={food}>{foods}</option>
                       )
                     })}
 
@@ -67,9 +79,10 @@ class Ingredients extends React.Component {
                 <button className="button" type="submit" onClick={this.submitButton}>Submit</button>
               </div>
             </div>
+            </div>
+            </div>
           </form>
-        </div>
-
+   </div>
       </div>
 
 

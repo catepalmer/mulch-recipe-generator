@@ -9,6 +9,7 @@ class Ingredients extends React.Component {
       userName: '',
       foodsSelected: []
     }
+    
     this.handleChange = this.handleChange.bind(this)
     this.submitButton = this.submitButton.bind(this)
     this.getCategories = this.getCategories.bind(this)
@@ -32,6 +33,7 @@ class Ingredients extends React.Component {
   }
 
   handleChangeArray(e) {
+   
     const state = this.state
     state[e.target.name] = state[e.target.name].concat(e.target.value)
   }

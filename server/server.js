@@ -7,5 +7,6 @@ const server = express()
 
 server.use(bodyParser.json())
 server.use(express.static(path.join(__dirname, '../public')))
+server.use('/food', foodRoutes)
 
 module.exports = server

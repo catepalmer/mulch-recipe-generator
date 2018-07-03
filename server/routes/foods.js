@@ -5,7 +5,6 @@ const router = express.Router()
 router.get('/ingredients', (req, res) => {
   db.getFoods()
     .then(foods => {
-        console.log('These are the foodses: ' + foods)
       res.json({foods})
     })
 })

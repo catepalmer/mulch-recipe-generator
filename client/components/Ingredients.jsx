@@ -5,18 +5,23 @@ class Ingredients extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      foods: []
+      listOfFoods: [],
+      userName: '',
+      foodsSelected: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.submitButton = this.submitButton.bind(this)
+    this.getCategories = this.getCategories.bind(this)
+    this.getFoodsInCategory = this.getFoodsInCategory.bind(this)
+    this.renderFoods = this.renderFoods.bind(this)
+    this.handleChangeArray = this.handleChangeArray.bind(this)
   }
 
   componentDidMount() {
     getFoods()
-      .then(foods => {
-        console.log('Here is the thing from Ingredients: ' + foods)
+      .then(res => {
         this.setState({
-          foods
+          listOfFoods: res.foods
         })
       })
   }
@@ -24,12 +29,46 @@ class Ingredients extends React.Component {
   handleChange(e) {
     const state = this.state
     state[e.target.name] = e.target.value
-}
+  }
 
-submitButton(e) {
-  e.preventDefault()
-  this.props.updateState(this.state)
-}
+  handleChangeArray(e) {
+    const state = this.state
+    state[e.target.name] = state[e.target.name].concat(e.target.value)
+  }
+
+
+  submitButton(e) {
+    e.preventDefault()
+    this.setState(this.state)
+  }
+
+  getCategories(listOfFoods) {
+    let allCategories = []
+    listOfFoods.map((food) => {
+      return allCategories.push(food.category)
+    })
+    let categories = Array.from(new Set(allCategories))
+    return categories
+  }
+
+  getFoodsInCategory(category) {
+    let foods = this.state.listOfFoods
+    let foodsInCategory = foods.filter(food => {
+      return food.category == category
+    })
+    return foodsInCategory
+  }
+
+  renderFoods (category) {
+    return this.getFoodsInCategory(category).map((food) => {
+      return (
+        <div key={food.name}>
+          <input type="checkbox" id={food.name} key={food.name} name="foodsSelected" value={food.name} onChange={(e) => this.handleChangeArray(e)} />
+          <label htmlFor={food.name}>{food.name}</label>
+        </div>
+      )
+    })
+  }
 
   render() {
     return (
@@ -38,51 +77,34 @@ submitButton(e) {
           <form>
             <div className="field">
               <div className="control">
-                <label>What's your name?</label>
-                <input type="text" className="input is-small" name="name" onChange={(e) => this.handleChange(e)} />
+                <label>My name is:
+                <input type="text" className="input is-small" name="userName" onChange={(e) => this.handleChange(e)} />
+                </label>
+                <button className="button" type="submit" onClick={this.submitButton}>Submit</button>
               </div>
             </div>
 
             <div className="field">
               <div className="control">
-                <label>What's in your fridge?</label>
-                <br />
-                <div className="select">
-                  <select className="select" name="food" onChange={(e) => this.handleChange(e)}>
+                <h2>Choose Your Poison</h2>
+                <h3>(What ingredients do you have on hand?)</h3>
 
-                    {this.state.foods.map((food, i) => {
-                      return (
-                        <option key={food}>{foods}</option>
-                      )
-                    })}
-
-                  </select>
-                </div>
-                <br /><hr />
-
-                 <div className="field">
-              <div className="control">
-                <label>Quantity</label>
-                <br />
-                <div className="select">
-                  <select className="select" name="type" onChange={(e) => this.handleChange(e)}>
-
-                    {this.state.foods.map((name, i) => {
-                      return (
-                        <option key={foods}>{foods}</option>
-                      )
-                    })}
-
-                  </select>
-                </div>
-                <br /><hr />
-                <button className="button" type="submit" onClick={this.submitButton}>Submit</button>
+                <fieldset>
+                  {this.getCategories(this.state.listOfFoods).map((category) => {
+                    return (
+                      <div>
+                        <legend key={category}>{category}</legend>
+                        {this.renderFoods(category)}
+                        <br/>
+                      </div>
+                    )
+                  })}
+                </fieldset>
               </div>
             </div>
-            </div>
-            </div>
+            <button className="button" type="submit" onClick={this.submitButton}>Submit</button>
           </form>
-   </div>
+        </div>
       </div>
 
 

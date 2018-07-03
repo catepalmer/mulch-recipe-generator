@@ -6,6 +6,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server & webpack --watch",
+    "dev": "nodemon --watch & webpack --watch",
     "test": "jest --watch --noStackTrace",
     "knex": "knex"
   },
@@ -37,6 +38,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "knex": "^0.14.6",
+    "nodemon": "^1.17.5",
     "sqlite3": "^4.0.1",
     "superagent": "^3.8.3"
   }

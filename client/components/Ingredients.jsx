@@ -1,5 +1,6 @@
 import React from 'react'
 import { getFoods } from '../apiClient'
+import { Route, Redirect } from 'react-router-dom'
 
 class Ingredients extends React.Component {
   constructor(props) {
@@ -7,15 +8,17 @@ class Ingredients extends React.Component {
     this.state = {
       listOfFoods: [],
       userName: '',
-      foodsSelected: []
+      foodsSelected: [],
+      toRecipe: false
     }
-    
+
     this.handleChange = this.handleChange.bind(this)
     this.submitButton = this.submitButton.bind(this)
     this.getCategories = this.getCategories.bind(this)
     this.getFoodsInCategory = this.getFoodsInCategory.bind(this)
     this.renderFoods = this.renderFoods.bind(this)
     this.handleChangeArray = this.handleChangeArray.bind(this)
+    // this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -41,7 +44,9 @@ class Ingredients extends React.Component {
 
   submitButton(e) {
     e.preventDefault()
-    this.setState(this.state)
+    // this.setState(this.state)
+    this.state.toRecipe = true
+    console.log(this.state)
   }
 
   getCategories(listOfFoods) {
@@ -61,6 +66,13 @@ class Ingredients extends React.Component {
     return foodsInCategory
   }
 
+  // handleSubmit () {
+  //   this.setState({
+  //     toRecipe:true
+  //   })
+  //   console.log('This thing fired')
+  // }
+
   renderFoods (category) {
     return this.getFoodsInCategory(category).map((food) => {
       return (
@@ -73,9 +85,16 @@ class Ingredients extends React.Component {
   }
 
   render() {
+    // if (this.state.toRecipe == true) {
+    //   return (
+    //   <Redirect to="recipe" />
+    //   )}
+
     return (
-      <div>
         <div className="box">
+        {this.state.toRecipe && <Redirect to="recipe" />}
+        {!this.state.toRecipe &&
+          <div>
           <form>
             <div className="field">
               <div className="control">
@@ -106,10 +125,9 @@ class Ingredients extends React.Component {
             </div>
             <button className="button" type="submit" onClick={this.submitButton}>Submit</button>
           </form>
+          </div>
+        }
         </div>
-      </div>
-
-
     )
   }
 }

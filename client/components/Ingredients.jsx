@@ -5,6 +5,7 @@ import { Route, Redirect } from 'react-router-dom'
 class Ingredients extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       listOfFoods: [],
       userName: '',
@@ -18,7 +19,6 @@ class Ingredients extends React.Component {
     this.getFoodsInCategory = this.getFoodsInCategory.bind(this)
     this.renderFoods = this.renderFoods.bind(this)
     this.handleChangeArray = this.handleChangeArray.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -44,9 +44,9 @@ class Ingredients extends React.Component {
 
   submitButton(e) {
     e.preventDefault()
-    // this.setState(this.state)
-    this.state.toRecipe = true
-    console.log(this.state)
+    this.setState ({
+      toRecipe: true
+    })
   }
 
   getCategories(listOfFoods) {
@@ -66,13 +66,6 @@ class Ingredients extends React.Component {
     return foodsInCategory
   }
 
-  // handleSubmit () {
-  //   this.setState({
-  //     toRecipe:true
-  //   })
-  //   console.log('This thing fired')
-  // }
-
   renderFoods (category) {
     return this.getFoodsInCategory(category).map((food) => {
       return (
@@ -84,51 +77,48 @@ class Ingredients extends React.Component {
     })
   }
 
+
   render() {
-    // if (this.state.toRecipe == true) {
-    //   return (
-    //   <Redirect to="recipe" />
-    //   )}
-
     return (
-        <div className="box">
-        {this.state.toRecipe && <Redirect to="recipe" />}
-        {!this.state.toRecipe &&
-          <div>
-          <form>
-            <div className="field">
-              <div className="control">
-                <label>My name is:
-                <input type="text" className="input is-small" name="userName" onChange={(e) => this.handleChange(e)} />
-                </label>
-                <button className="button" type="submit" onClick={this.submitButton}>Submit</button>
+          <div className="box">
+          {this.state.toRecipe && <Redirect to="/recipe" />}
+          <form onSubmit={this.submitButton}>
+            <div>
+            
+              <div className="field">
+                <div className="control">
+                  <label>My name is:
+                  <input type="text" className="input is-small" name="userName" onChange={(e) => this.handleChange(e)} />
+                  </label>
+                </div>
               </div>
+  
+              <div className="field">
+                <div className="control">
+                  <h2>Choose Your Poison</h2>
+                  <h3>(What ingredients do you have on hand?)</h3>
+  
+                  <fieldset>
+                    {this.getCategories(this.state.listOfFoods).map((category) => {
+                      return (
+                        <div>
+                          <legend key={category}>{category}</legend>
+                          {this.renderFoods(category)}
+                          <br/>
+                        </div>
+                      )
+                    })}
+                  </fieldset>
+                </div>
+              </div>
+              <button className="button" type="submit" onClick={this.submitButton}>Mulch Me!</button>
+           
             </div>
 
-            <div className="field">
-              <div className="control">
-                <h2>Choose Your Poison</h2>
-                <h3>(What ingredients do you have on hand?)</h3>
-
-                <fieldset>
-                  {this.getCategories(this.state.listOfFoods).map((category) => {
-                    return (
-                      <div>
-                        <legend key={category}>{category}</legend>
-                        {this.renderFoods(category)}
-                        <br/>
-                      </div>
-                    )
-                  })}
-                </fieldset>
-              </div>
-            </div>
-            <button className="button" type="submit" onClick={this.submitButton}>Submit</button>
           </form>
           </div>
-        }
-        </div>
-    )
+      )
+    
   }
 }
 

@@ -1,11 +1,18 @@
 import React from 'react'
 
-const Recipe = () => {
-  return (
-    <div className='recipe'>
-      
-    </div>
-  )
+class Recipe extends React.Component {
+  constructor(props) {
+    super(props)
+
+  }
+  render() {
+    return (
+      <div className='recipe'>
+
+      </div>
+    )
+  }
 }
+
 
 export default Recipe
